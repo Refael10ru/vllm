@@ -549,6 +549,8 @@ class IrOpImpl:
         supports_args: Callable[..., bool] | None,
         inplace: bool = False,
         registration_stack: list[str] | None = None,
+        mem_hertz: float | None = None,
+        cpu_hertz: float | None = None,
     ):
         assert provider not in op.impls, (
             f"Implementation for provider {provider} already registered."
@@ -622,6 +624,8 @@ class IrOpImpl:
         self._supports_args = supports_args
         self.inplace = inplace
         self._registration_stack = registration_stack or []
+        self.mem_hertz = mem_hertz
+        self.cpu_hertz = cpu_hertz
 
     @property
     def supports_all_args(self) -> bool:
